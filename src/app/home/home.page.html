@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Vigenere Encryption
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-radio-group name="mode" value="encrypt" [(ngModel)]="modeSelected" (ionChange)="changeMode()">
+    <ion-list-header>
+      <ion-label>Mode</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Encrypt</ion-label>
+      <ion-radio value="encrypt"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Decrypt</ion-label>
+      <ion-radio value="decrypt"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+</ion-list>
+
+<ion-item>
+  <ion-label position="floating">Input Text:<ion-text color="danger">*</ion-text></ion-label>
+  <ion-textarea type="text" placeholder="Required" [(ngModel)]="inputText" (ionChange)="inputTextChange()"></ion-textarea>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Secret Key:<ion-text color="danger">*</ion-text></ion-label>
+  <ion-textarea type="text" placeholder="Required" [(ngModel)]="keyText" (ionChange)="inputTextChange()"></ion-textarea>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">{{ outputTitle }}</ion-label>
+  <ion-textarea
+    readonly
+  > {{ outputText }}</ion-textarea>
+</ion-item>
+
+</ion-content>
