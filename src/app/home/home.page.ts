@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CipherService } from '../service/cipher.service';
 
 @Component({
   selector: 'app-home',
@@ -14,20 +15,25 @@ export class HomePage {
   keyText = "";
   outputText = "";
 
-  constructor() {}
+  constructor(private cipherService: CipherService) {}
 
   changeMode() {
-    this.isEncryptionModeEnabled = this.modeSelected === 'encrypt'
+    this.isEncryptionModeEnabled = this.modeSelected === 'encrypt';
       
     if (this.isEncryptionModeEnabled) {
-      this.outputTitle = "Your Encrypted Message:"
+      this.outputTitle = "Your Encrypted Message:";
     } else {
-      this.outputTitle = "Your Decrypted Message:"
+      this.outputTitle = "Your Decrypted Message:";
     }
+
+    this.inputTextChange();
   }
 
   inputTextChange() {
-    this.outputText = this.inputText + " " + this.keyText 
+    if (this.isEncryptionModeEnabled) {
+      this.outputText = this.cipherService.encode(this.inputText, this.keyText);
+    } else {
+      this.outputText = this.cipherService.decode(this.inputText, this.keyText);
+    }
   }
-
 }
