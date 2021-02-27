@@ -1,5 +1,7 @@
 {
   "name": "Vigenere",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
